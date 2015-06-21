@@ -124,7 +124,18 @@
       <Custom Action="SplitString" After="CostFinalize" Overridable="yes"></Custom>
     </InstallUISequence>
   </Fragment>
+  
+  <!-- Extract Post-Signature String -->
+  <Fragment>
+    <CustomAction Id="ExtractPostSignatureString" Execute="firstSequence" BinaryKey="PanelSwCustomActions.dll" DllEntry="ExtractTag" Return="check" />
 
+    <InstallExecuteSequence>
+      <Custom Action="ExtractPostSignatureString" Before="LaunchConditions" Overridable="yes"></Custom>
+    </InstallExecuteSequence>
+    <InstallUISequence>
+      <Custom Action="ExtractPostSignatureString" Before="LaunchConditions" Overridable="yes"></Custom>
+    </InstallUISequence>
+  </Fragment>
 
   <!-- Rollback -->
   <Fragment>

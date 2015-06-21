@@ -96,6 +96,7 @@
     <ClCompile Include="SplitPath.cpp" />
     <ClCompile Include="SplitString.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TagExtractor.cpp" />
     <ClCompile Include="Telemetry.cpp" />
     <ClCompile Include="TerminateSuccessfully.cpp" />
     <ClCompile Include="XmlSearch.cpp" />
@@ -107,6 +108,7 @@
     <ClInclude Include="RegistryXmlParser.h" />
     <ClInclude Include="ShellExecute.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TagExtractor.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="Telemetry.h" />
   </ItemGroup>
