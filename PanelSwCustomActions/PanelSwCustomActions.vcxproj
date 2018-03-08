@@ -138,6 +138,9 @@
     <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\telemetryDetails.pb.cc">
       <AutoGen>True</AutoGen>
     </ClCompile>
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\dismDetails.pb.cc">
+      <AutoGen>True</AutoGen>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExecOnComponent.h" />
@@ -174,10 +177,14 @@
     <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\telemetryDetails.pb.h">
       <AutoGen>True</AutoGen>
     </ClInclude>
+    <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\dismDetails.pb.h">
+      <AutoGen>True</AutoGen>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="PanelSwCustomActions.def" />
+    <None Include="ProtoBuf\dismDetails.proto" />
     <None Include="ProtoBuf\execOnDetails.proto" />
     <None Include="ProtoBuf\fileOperationsDetails.proto" />
     <None Include="ProtoBuf\fileRegexDetails.proto" />

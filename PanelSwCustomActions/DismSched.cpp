@@ -4,8 +4,12 @@
 #include <list>
 #include <string>
 #include <Shlwapi.h>
+#include "dismDetails.pb.h"
+#include "DeferredActionBase.h"
 #pragma comment (lib, "Shlwapi.lib")
 using namespace std;
+using namespace com::panelsw::ca;
+using namespace google::protobuf;
 
 #define Dism_QUERY L"SELECT `Id`, `Component_`, `EnableFeatures` FROM `PSW_Dism`"
 enum DismQuery { Id = 1, Component = 2, EnableFeatures = 3 };
@@ -19,15 +23,15 @@ extern "C" UINT __stdcall DismSched(MSIHANDLE hInstall)
 	HRESULT hr = S_OK;
 	BOOL bRes = TRUE;
 	LPWSTR szMsiLog = nullptr;
-	LPWSTR szCAD = nullptr;
 	WCHAR szDismLog[MAX_PATH];
 	PMSIHANDLE hView;
 	PMSIHANDLE hRecord;
 	LPWSTR szId = nullptr;
 	LPWSTR szComponent = nullptr;
 	LPWSTR szFeature = nullptr;
+	LPWSTR szCAD = nullptr;
 	int nVersionNT = 0;
-	BOOL bAny = FALSE;
+	DismDetails details;
 
 	hr = WcaInitialize(hInstall, __FUNCTION__);
 	ExitOnFailure(hr, "Failed to initialize");
@@ -48,8 +52,7 @@ extern "C" UINT __stdcall DismSched(MSIHANDLE hInstall)
 		bRes = ::PathRenameExtension(szDismLog, L".dism.log");
 		ExitOnNullWithLastError1(bRes, hr, "Failed renaming file extension: '%ls'", szMsiLog);
 
-		hr = StrAllocFormatted(&szCAD, DismLogPrefix L"%s", szDismLog);
-		ExitOnFailure(hr, "Failed formatting string for DISM log file");
+		details.set_logfile(szDismLog, WSTR_BYTE_SIZE(szDismLog));
 	}
 
 	// Execute view
@@ -80,20 +83,13 @@ extern "C" UINT __stdcall DismSched(MSIHANDLE hInstall)
 		case WCA_TODO::WCA_TODO_INSTALL:
 		case WCA_TODO::WCA_TODO_REINSTALL:
 			WcaLog(LOGLEVEL::LOGMSG_STANDARD, "Will enable features matching pattern '%ls' on component '%ls'", szFeature, szComponent);
-			bAny = TRUE;
 
 			if (nVersionNT <= 601)
 			{
 				ExitOnFailure(hr = E_NOTIMPL, "PanelSwWixExtension Dism is only supported on Windows 8 / Windows Server 2008 R2 or newer operating systems");
 			}
 
-			szStrLen = ::wcslen(szCAD);
-			hr = StrAllocConcat(&szCAD, L";", szStrLen);
-			ExitOnFailure(hr, "Failed to build CustomActionData");
-
-			++szStrLen;
-			hr = StrAllocConcat(&szCAD, szFeature, szStrLen);
-			ExitOnFailure(hr, "Failed to build CustomActionData");
+			details.add_featureregexexpression(szFeature, WSTR_BYTE_SIZE(szFeature));
 			break;
 
 		case WCA_TODO::WCA_TODO_UNINSTALL:
@@ -110,8 +106,16 @@ extern "C" UINT __stdcall DismSched(MSIHANDLE hInstall)
 	hr = S_OK; // We're only getting here on hr = E_NOMOREITEMS.
 
 	// Since Dism API takes long, we only want to execute it if there's something to do. Conditioning the Dism deferred CA with the property existance will save us time.
-	if (bAny)
+	if (details.featureregexexpression_size())
 	{
+		std::string srlz;
+
+		bRes = details.SerializeToString(&srlz);
+		BreakExitOnNull(bRes, hr, E_FAIL, "Failed serializing CustomActionData");
+
+		hr = StrAllocBase85Encode((const BYTE*)srlz.data(), srlz.size(), &szCAD);
+		BreakExitOnFailure(hr, "Failed encode CustomActionData");
+
 		hr = WcaSetProperty(L"DismX86", szCAD);
 		ExitOnFailure(hr, "Failed setting CustomActionData");
 

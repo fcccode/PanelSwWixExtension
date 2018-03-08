@@ -1,0 +1,8 @@
+syntax = "proto3";
+package com.panelsw.ca;
+option optimize_for = LITE_RUNTIME;
+
+message DismDetails{
+	bytes logFile = 1;
+    repeated bytes featureRegexExpression = 2;
+}

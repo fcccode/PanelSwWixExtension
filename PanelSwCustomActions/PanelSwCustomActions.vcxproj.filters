@@ -3,7 +3,7 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
@@ -100,35 +100,24 @@
     <ClCompile Include="SqlSearch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\execOnDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\fileOperationsDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\fileRegexDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\servciceConfigDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\shellExecDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\taskSchedulerDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\telemetryDetails.pb.cc">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BackupAndRestore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\execOnDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\fileOperationsDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\fileRegexDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\servciceConfigDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\shellExecDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\taskSchedulerDetails.pb.cc" />
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\telemetryDetails.pb.cc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\*.pb.*">
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\*.pb.cc">
       <Filter>Protobuf-Generated</Filter>
     </ClCompile>
+    <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\*.pb.h">
+      <Filter>Protobuf-Generated</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -217,6 +206,9 @@
     <None Include="packages.config" />
     <None Include="PanelSwCustomActions.def">
       <Filter>Source Files</Filter>
+    </None>
+    <None Include="ProtoBuf\dismDetails.proto">
+      <Filter>Proto</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
