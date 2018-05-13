@@ -197,7 +197,6 @@ HRESULT CFileRegex::Execute(LPCWSTR szFilePath, LPCWSTR szRegex, LPCWSTR szRepla
 	BOOL bRes = TRUE;
 	DWORD dwBytesRead = 0;
 	DWORD dwFileSize = 0;
-	DWORD dwFileAttr = FILE_ATTRIBUTE_NORMAL;
 	HANDLE hFile = INVALID_HANDLE_VALUE;
 	void* pFileContents = nullptr;
 	FileRegexDetails::FileEncoding eDetectedEncoding = FileRegexDetails::FileEncoding::FileRegexDetails_FileEncoding_None;

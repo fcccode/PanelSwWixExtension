@@ -133,6 +133,12 @@
     <ClCompile Include="CreateSelfSignCertificate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="JsonPatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\jsonPatchDetails.pb.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\*.pb.*">
@@ -206,6 +212,12 @@
     <ClInclude Include="TopShelfService.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="JsonPatch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\jsonPatchDetails.pb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ProtoBuf\execOnDetails.proto">
@@ -234,6 +246,9 @@
       <Filter>Source Files</Filter>
     </None>
     <None Include="ProtoBuf\topShelfServiceDetails.proto">
+      <Filter>Proto</Filter>
+    </None>
+    <None Include="ProtoBuf\jsonPatchDetails.proto">
       <Filter>Proto</Filter>
     </None>
   </ItemGroup>

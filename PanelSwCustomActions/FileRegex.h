@@ -9,13 +9,13 @@ public:
 
 	HRESULT AddFileRegex(LPCWSTR szFilePath, LPCWSTR szRegex, LPCWSTR szReplacement, ::com::panelsw::ca::FileRegexDetails::FileEncoding eEncoding, bool bIgnoreCase);
 
+	static ::com::panelsw::ca::FileRegexDetails::FileEncoding DetectEncoding(const void* pFileContent, DWORD dwSize);
+
 protected:
 	// Execute the command object (XML element)
 	HRESULT DeferredExecute(const ::std::string& command) override;
 
 private:
-
-	::com::panelsw::ca::FileRegexDetails::FileEncoding DetectEncoding(const void* pFileContent, DWORD dwSize);
 
 	HRESULT Execute(LPCWSTR szFilePath, LPCWSTR szRegex, LPCWSTR szReplacement, ::com::panelsw::ca::FileRegexDetails::FileEncoding eEncoding, bool bIgnoreCase);
 

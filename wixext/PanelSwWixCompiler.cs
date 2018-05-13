@@ -184,6 +184,10 @@ namespace PanelSw.Wix.Extensions
                             ParseTopShelfElement(element, parentElement);
                             break;
 
+                        case "JsonPatch":
+                            ParseJsonPatchElement(element, parentElement);
+                            break;
+
                         default:
                             Core.UnexpectedElement(parentElement, element);
                             break;
@@ -496,6 +500,58 @@ namespace PanelSw.Wix.Extensions
                 row[0] = file;
                 row[1] = argId;
                 row[2] = value;
+            }
+        }
+
+        private void ParseJsonPatchElement(XmlNode node, XmlElement parentElement)
+        {
+            SourceLineNumberCollection sourceLineNumbers = Preprocessor.GetSourceLineNumbers(node);
+            string id = null;
+            string patch = null;
+
+            string file = parentElement.GetAttribute("Id");
+            if (string.IsNullOrEmpty(file))
+            {
+                file = parentElement.GetAttribute("Source");
+                file = Path.GetFileName(file);
+            }
+
+            foreach (XmlAttribute attrib in node.Attributes)
+            {
+                if (0 == attrib.NamespaceURI.Length || attrib.NamespaceURI == schema.TargetNamespace)
+                {
+                    switch (attrib.LocalName)
+                    {
+                        case "Id":
+                            id = Core.GetAttributeValue(sourceLineNumbers, attrib);
+                            break;
+
+                        case "Patch":
+                            patch = Core.GetAttributeValue(sourceLineNumbers, attrib);
+                            break;
+
+                        default:
+                            Core.UnexpectedAttribute(sourceLineNumbers, attrib);
+                            break;
+                    }
+                }
+            }
+
+            if (string.IsNullOrEmpty(file))
+            {
+                Core.OnMessage(WixErrors.ExpectedAttribute(sourceLineNumbers, parentElement.Name, "Id"));
+            }
+
+            // reference the Win32_CopyFiles custom actions since nothing will happen without these
+            Core.EnsureTable(sourceLineNumbers, "PSW_JsonPatch");
+            Core.CreateWixSimpleReferenceRow(sourceLineNumbers, "CustomAction", "JsonPatch");
+
+            if (!Core.EncounteredError)
+            {
+                Row row = Core.CreateRow(sourceLineNumbers, "PSW_JsonPatch");
+                row[0] = id;
+                row[1] = file;
+                row[2] = patch;
             }
         }
 

@@ -199,4 +199,10 @@
     <columnDefinition name="Password" type="string" length="0" modularize="property" category="formatted" />
     <columnDefinition name="DeleteOnCommit" type="number" minValue="0" maxValue="1" length="2" />
   </tableDefinition>
+  
+  <tableDefinition name="PSW_JsonPatch">
+    <columnDefinition name="Id" type="string" length="72" primaryKey="yes" modularize="column" category="identifier" />
+    <columnDefinition name="File_" type="string" length="0" modularize="property" category="identifier" />
+    <columnDefinition name="Patch" type="string" length="0" modularize="property" category="formatted" />
+  </tableDefinition>
 </tableDefinitions>

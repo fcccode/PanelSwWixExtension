@@ -98,6 +98,7 @@
     <ClCompile Include="ExecOnComponent.cpp" />
     <ClCompile Include="FileOperations.cpp" />
     <ClCompile Include="FileRegex.cpp" />
+    <ClCompile Include="JsonPatch.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="MsiSqlQuery.cpp" />
     <ClCompile Include="RegDataSerializer.cpp" />
@@ -143,11 +144,15 @@
     <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\topShelfServiceDetails.pb.cc">
       <AutoGen>True</AutoGen>
     </ClCompile>
+    <ClCompile Include="..\build\obj\$(Configuration)\Protobuf\jsonPatchDetails.pb.cc">
+      <AutoGen>True</AutoGen>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ExecOnComponent.h" />
     <ClInclude Include="FileOperations.h" />
     <ClInclude Include="FileRegex.h" />
+    <ClInclude Include="JsonPatch.h" />
     <ClInclude Include="RegDataSerializer.h" />
     <ClInclude Include="CustomUninstallKey.h" />
     <ClInclude Include="RegistryKey.h" />
@@ -158,6 +163,7 @@
     <ClInclude Include="targetver.h" />
     <ClInclude Include="TaskScheduler.h" />
     <ClInclude Include="Telemetry.h" />
+    <ClInclude Include="TopShelfService.h" />
     <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\execOnDetails.pb.h">
       <AutoGen>True</AutoGen>
     </ClInclude>
@@ -182,7 +188,9 @@
     <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\topShelfServiceDetails.pb.h">
       <AutoGen>True</AutoGen>
     </ClInclude>
-    <ClInclude Include="TopShelfService.h" />
+    <ClInclude Include="..\build\obj\$(Configuration)\Protobuf\jsonPatchDetails.pb.h">
+      <AutoGen>True</AutoGen>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -190,6 +198,7 @@
     <None Include="ProtoBuf\execOnDetails.proto" />
     <None Include="ProtoBuf\fileOperationsDetails.proto" />
     <None Include="ProtoBuf\fileRegexDetails.proto" />
+    <None Include="ProtoBuf\jsonPatchDetails.proto" />
     <None Include="ProtoBuf\servciceConfigDetails.proto" />
     <None Include="ProtoBuf\shellExecDetails.proto" />
     <None Include="ProtoBuf\taskSchedulerDetails.proto" />

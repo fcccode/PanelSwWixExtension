@@ -535,4 +535,21 @@
       <ProgressText Action="CreateSelfSignCertificate">!(loc.CreateSelfSignCertificate)</ProgressText>
     </UI>
   </Fragment>
+
+  <!-- JsonPatch -->
+  <Fragment>
+    <CustomAction Id="JsonPatch" SuppressModularization="yes" BinaryKey="PanelSwCustomActions.dll" DllEntry="JsonPatch" Execute="immediate" />
+    <CustomAction Id="JsonPatch_rollback" SuppressModularization="yes" BinaryKey="PanelSwCustomActions.dll" DllEntry="CommonDeferred" Execute="rollback" Impersonate="no" />
+    <CustomAction Id="JsonPatch_deferred" SuppressModularization="yes" BinaryKey="PanelSwCustomActions.dll" DllEntry="CommonDeferred" Execute="deferred" Impersonate="no" />
+    <CustomAction Id="JsonPatch_commit" SuppressModularization="yes" BinaryKey="PanelSwCustomActions.dll" DllEntry="CommonDeferred" Execute="commit" Impersonate="no" />
+    <InstallExecuteSequence>
+      <Custom Action="JsonPatch" After="DuplicateFiles" Overridable="yes"/>
+    </InstallExecuteSequence>
+    <UI>
+      <ProgressText Action="JsonPatch">!(loc.JsonPatch)</ProgressText>
+      <ProgressText Action="JsonPatch_rollback">!(loc.JsonPatch)</ProgressText>
+      <ProgressText Action="JsonPatch_deferred">!(loc.JsonPatch)</ProgressText>
+      <ProgressText Action="JsonPatch_commit">!(loc.JsonPatch)</ProgressText>
+    </UI>
+  </Fragment>
 </Wix>

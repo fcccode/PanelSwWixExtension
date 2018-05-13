@@ -15,6 +15,11 @@
       <Component Directory="INSTALLFOLDER">
         <File Source="$(var.ProjectDir)Unicode.ini" />
       </Component>
+      <Component Directory="INSTALLFOLDER">
+        <File Source="C:\tfvotiro\Main\repo\Votiro.Management\Management.ElasticsearchTool\bin\x64\Release\Configuration\configurationEntries.json">
+          <PanelSW:JsonPatch Id="_1" Patch='{ "op": "replace", "path": "/entries/1/Type", "value": "boo" }'/>
+        </File>
+      </Component>
     </Feature>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
